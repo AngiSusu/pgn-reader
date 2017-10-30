@@ -1,0 +1,52 @@
+In this “mini-homework” assignment you will practice
+
+writing exceptions,
+using exceptions, and
+simple code testing.
+Problem Description
+You need to add invalid square checking to your square class and ensure that it works properly before continuing to rewrite your PGN reader.
+
+Solution Description
+Write or modify the following classes:
+
+Write an exception named InvalidSquareException. The message returned by getMessage should be the square that’s invalid, e.g. a9 or i1 – a square that doesn’t exist on the chess board.
+
+Decide whether your InvalidSquareException should be a checked or unchecked exception and implement it appropriately.
+In the JavaDoc comment for your InvalidSquareException class write a sentence or two justifying your choice of checked or unchecked exception.
+Modify your Square class from HW2 to make the following changes:
+
+The constructors should should throw an InvalidSquareException exception if the file is not in the range ['a', 'h'] or the rank is not in the range ['1', '8'].
+Add public getter methods for the file and rank fields.
+For each class include Javadoc comments as described in the CS 1331 style guide.
+
+We will test your classes with code similar to the following. You should too. (Assume fail(String) and assertEquals(T, T) are implemented appropriately in these examples.)
+
+try {
+    new Square("a1");
+} catch (InvalidSquareException e) {
+    fail("InvalidSquareException for valid square: " + e.getMessage());
+}
+try {
+    String invalidSquare = "a9";
+    new Square(invalidSquare);
+    fail("No InvalidSquareException for invalid square: " + invalidSquare);
+} catch (InvalidSquareException e) {
+    // Success
+}
+Square s = new Square("f7");
+assertEquals('f', s.getFile());
+assertEquals('7', s.getRank());
+Square s2 = new Square('e', '4');
+assertEquals("e4", s2.toString());
+Grading
+10 points: InvalidSquareException is-a appropriate Throwable
+10 points: Justification for InvalidSquareException being checked or unchecked
+10 points: Square throws InvalidSquareException for square with invalid file (both constructors)
+10 points: Square throws InvalidSquareException for square with invalid rank (both constructors)
+10 points: Square does not throw InvalidSquareException for square with valid file (both constructors)
+10 points: Square does not throw InvalidSquareException for square with valid rank (both constructors)
+10 points: InvalidSquareException.getMessage returns correct value when thrown from Square constructor
+10 points: Square getter for file has correct visibility, return type, name, parameter list, and returns correct value
+10 points: Square getter for rank has correct visibility, return type, name, parameter list, and returns correct value
+10 points: Square.toString returns correct value
+Checkstyle deduction will be capped at 30 points for this homework.
